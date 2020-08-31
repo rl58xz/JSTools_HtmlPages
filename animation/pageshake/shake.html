@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>shake</title>
+        <style>
+            #root{
+                background-color: blanchedalmond;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='root'>click me</div>
+        <script>
+            let root = document.getElementById('root');
+
+            /**
+            e: 目标元素
+            distance: 晃动距离
+            startTime: 开始时间
+            time: 总时长
+            callback: 回调函数
+            */
+            function shake(e,distance,startTime,time,callback){
+                let width = window.getComputedStyle(e,"").width;
+                e = e || document.body;
+                distance = distance || (Number.parseFloat(width) + width.slice(String(pos).length));
+                startTime = startTime || Date.now();
+                time = time || 500;
+                e.style.position = 'relative';
+                let duration = (Date.now() - startTime)/time;
+                if(duration < 1){
+                    let pos = Math.sin(duration * 4 * Math.PI) * Number.parseFloat(distance);
+                    e.style.left = `${pos + distance.slice(String(Number.parseFloat(distance)).length)}`;
+                    setTimeout(() => {
+                        shake(e,distance,startTime,time,callback);
+                    },0);
+                }else{
+                    e.style.left = '0';
+                    if(callback){
+                        callback(e);
+                    }
+                }
+            }
+
+            root.addEventListener('mousedown',(e)=>{
+                shake(e.target,'2em');
+            })
+        </script>
+    </body>
+</html>
