@@ -22,7 +22,6 @@
             callback: 回调函数
             */
             function shake(e,distance,startTime,time,callback){
-                let width = window.getComputedStyle(e,"").width;
                 e = e || document.body;
                 distance = distance || (Number.parseFloat(width) + width.slice(String(pos).length));
                 startTime = startTime || Date.now();
@@ -32,9 +31,12 @@
                 if(duration < 1){
                     let pos = Math.sin(duration * 4 * Math.PI) * Number.parseFloat(distance);
                     e.style.left = `${pos + distance.slice(String(Number.parseFloat(distance)).length)}`;
-                    setTimeout(() => {
+                    // setTimeout(()=>{
+                    //     shake(e,distance,startTime,time,callback);
+                    // },16);
+                    requestAnimationFrame(()=>{
                         shake(e,distance,startTime,time,callback);
-                    },0);
+                    })
                 }else{
                     e.style.left = '0';
                     if(callback){
@@ -44,7 +46,9 @@
             }
 
             root.addEventListener('mousedown',(e)=>{
-                shake(e.target,'2em');
+                let width = window.getComputedStyle(e.target,"").width;
+                // shake(e.target,'2em');
+                shake(e.target,width);
             })
         </script>
     </body>
