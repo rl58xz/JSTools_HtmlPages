@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            index
+        </title>
+    </head>
+    <body>
+        <div id='container'>
+            <ul>
+                <li>index</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+        <div id = 'root'>
+        </div>
+        <script>
+            let contents = {
+                index: 'index',
+                conte: 'conte'
+            };
+            window.addEventListener('hashchange',(e)=>{
+                if(location.hash.slice(1) === contents.index) document.getElementById('root').innerHTML = contents.index;
+                if(location.hash.slice(1) === contents.conte) document.getElementById('root').innerHTML = contents.conte;
+            })
+        </script>
+    </body>
+</html>

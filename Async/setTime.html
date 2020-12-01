@@ -1,0 +1,63 @@
+<style>
+    div{
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+        background-color: gray;
+        border-radius: 50px;
+    }
+    .green.light{
+        background-color: green;
+    }
+    .red.light{
+        background-color: red;
+    }
+    .yellow.light{
+        background-color: yellow;
+    }
+</style>
+    <div class="green"></div>
+    <div class="yellow"></div>
+    <div class="red"></div>
+<script>
+    function green(){
+        for(let i = 0; i < 3; i++){
+            document.getElementsByTagName('div')[i].classList.remove('light');
+        }
+        document.getElementsByClassName('green')[0].classList.add('light');
+    }
+    function yellow(){
+        for(let i = 0; i < 3; i++){
+            document.getElementsByTagName('div')[i].classList.remove('light');
+        }
+        document.getElementsByClassName('yellow')[0].classList.add('light');
+    }
+    function red(){
+        for(let i = 0; i < 3; i++){
+            document.getElementsByTagName('div')[i].classList.remove('light');
+        }
+        document.getElementsByClassName('red')[0].classList.add('light');
+    }
+
+
+    // void function go(){
+    //     green();
+    //     setTimeout(red,1000);
+    //     setTimeout(yellow,1500);
+    //     setTimeout(go,1700)
+    // }();
+
+    // let go = ()=>{
+    //     green();
+    //     setTimeout(()=>{
+    //         red();
+    //         setTimeout(()=>{yellow()},500);
+    //     },1000)
+    //     setTimeout(go,1700);
+    // };
+    // go();
+
+
+
+    
+</script>

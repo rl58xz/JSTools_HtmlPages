@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dom</title>
+    </head>
+    <body>
+        <div id='container' class="a b c">
+            <div id = '1'>1</div>
+            <div id = '2'>2</div>
+            <div id = '3'>3</div>
+        </div>
+        <script>
+            let container = document.getElementById('container');
+            let div1 = container.firstElementChild;
+            container.appendChild(div1);
+            container.dataset.x = 2;
+            container.hasAttribute('data-x');
+            container.insertBefore(container.firstElementChild,div1);
+            console.log(container.classList);
+            container.className='a b c d';
+            console.log(container.classList);
+            container.firstElementChild.replaceChild(container.lastElementChild,container.firstElementChild.firstChild)
+        </script>
+    </body>
+</html>

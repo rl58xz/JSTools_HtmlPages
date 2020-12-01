@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dom</title>
+    </head>
+    <body>
+        <div id='container' class="a b c">
+            <p contenteditable="true">f大数据的反馈路上的风景卡啦收到发了卡就开始代理反馈啦睡觉饭卡的分类及咖啡机撒</p>
+        </div>
+        <script>
+            let range = document.createRange();
+            let selection = window.getSelection();
+            let root = document.getElementById('container');
+            let node = root.firstElementChild;
+            console.log(node.childNodes[0]);
+            let text = node.childNodes[0];
+            range.setStart(text,2);
+            range.setEnd(text,5);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('bold');
+            console.log(node.childElementCount);
+            console.log(node);
+        </script>
+    </body>
+</html>

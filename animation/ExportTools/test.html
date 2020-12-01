@@ -11,8 +11,55 @@
     </head>
     <body>
         <div class="target"></div>
-        <script mode='module'>
-            class TimeLine{}
+        <script>
+            
+            class TimeLine{
+                constructor(){
+                    this.animations = [];
+                    this.startTime = Date.now();
+                    this.progression = 0;
+                    this.tick = () => {
+                        let curtime = Date.now() - this.startTime;
+                        for(let animation of this.animations){
+                            let {obj,attr,template,duration,timeFunction,start,end} = animation;
+                            this.progression = timeFunction(curtime/duration);
+                            if(this.progression < 1) obj[attr] = template(this.progression * (end - start));
+                            else obj[attr] = template(end);
+                        }
+                        requestAnimationFrame(this.tick);
+                    }
+                }
+                add(animation){
+                    this.animations.push(animation);
+                }
+                start(){
+                    this.startTime = Date.now();
+                    this.tick();
+                }
+                pause(){}
+                restart(){}
+            }
+
+            class Animation{
+                constructor(obj,attr,start,end,duration,dalay,timeFunction,template){
+                    this.obj = obj||document.documentElement.style;
+                    this.attr = attr||'transform';
+                    this.start = start;
+                    this.end = end;
+                    this.duration = duration;
+                    this.dalay = dalay;
+                    this.timeFunction = timeFunction;
+                    this.template = template;
+                }
+            }
+
+            let linear = x => x;
+            let time = new TimeLine;
+            let animation = new Animation(document.getElementsByClassName('target')[0].style,'transform',0,200,500,0,linear,(x)=>`translateX(${x}px)`);
+            time.add(animation);
+            document.getElementsByClassName('target')[0].addEventListener('click',()=>{
+                time.start();
+            })
         </script>
     </body>
 </html>

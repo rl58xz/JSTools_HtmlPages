@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>hashRoute</title>
+    </head>
+    <body>
+        <div id='container'>
+            <ul>
+                <li>1</li>
+                <li>3</li>
+            </ul>
+        </div>
+        <script>
+            window.addEventListener('hashchange',(e)=>{
+                //console.log(e);
+                console.log(location.hash);
+            })
+            let container = document.getElementById('container');
+            container.firstElementChild.firstElementChild.addEventListener('click',function(){
+                location = 'index.html'
+            })
+        </script>
+    </body>
+</html>
